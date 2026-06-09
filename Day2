@@ -1,0 +1,63 @@
+#Maximum Subarray
+class Solution {
+public:
+    int maxSubArray(vector<int>& nums) {
+        int currSum = 0;
+        int maxSum = nums[0];
+
+        for (int i = 0; i < nums.size(); i++) {
+            currSum += nums[i];
+
+            if (currSum > maxSum) {
+                maxSum = currSum;
+            }
+
+            if (currSum < 0) {
+                currSum = 0;
+            }
+        }
+
+        return maxSum;
+    }
+};
+
+#Contains Duplicate
+class Solution {
+public:
+    bool containsDuplicate(vector<int>& nums) {
+        unordered_set<int> seen;
+        for (int x: nums)
+        {
+            if (seen.count(x))
+            {
+                return true;
+            }
+            seen.insert(x);
+        }
+        return false;
+    }
+};
+
+#Maximum Average Subarray I
+class Solution {
+public:
+    double findMaxAverage(vector<int>& nums, int k) {
+        int sum = 0;
+
+        for (int i = 0; i < k; i++) {
+            sum += nums[i];
+        }
+
+        int maxSum = sum;
+
+        for (int i = k; i < nums.size(); i++) {
+            sum = sum - nums[i - k] + nums[i];
+
+            if (sum > maxSum) {
+                maxSum = sum;
+            }
+        }
+
+        return (double)maxSum / k;
+    }
+};
