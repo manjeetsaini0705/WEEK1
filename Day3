@@ -1,0 +1,59 @@
+#Move Zeroes
+void moveZeroes(int* nums, int numsSize) {
+    int k = numsSize;
+    int j = 0;
+    for(int i = 0 ; i < numsSize ; i++)
+    {
+        if (nums[i] != 0)
+        {
+            nums[j++]=nums[i];
+        }
+    }
+    while(j < numsSize){
+        nums[j++] = 0 ;
+    }
+}
+    
+#Squares of a Sorted Array
+class Solution {
+public:
+    vector<int> sortedSquares(vector<int>& nums) {
+        
+        for(int i = 0; i < nums.size(); i++) {
+            nums[i] = nums[i] * nums[i];
+        }
+
+        sort(nums.begin(), nums.end());
+
+        return nums;
+    }
+};
+
+#Container With Most Water
+class Solution {
+public:
+    int maxArea(vector<int>& height) {
+
+        int left = 0;
+        int right = height.size() - 1;
+
+        int maxi = 0;
+
+        while(left < right) {
+
+            int width = right - left;
+            int h = min(height[left], height[right]);
+
+            maxi = max(maxi, width * h);
+
+            if(height[left] < height[right]) {
+                left++;
+            }
+            else {
+                right--;
+            }
+        }
+
+        return maxi;
+    }
+};
