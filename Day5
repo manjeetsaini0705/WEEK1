@@ -1,0 +1,72 @@
+#Valid Palindrome
+bool isPalindrome(char* s) {
+    int length = strlen(s);
+    char *temp=malloc(strlen(s)+1);
+    int j = 0;
+
+    for(int i = 0 ; s[i]!='\0'; i++)
+    {
+        if(isalnum(s[i]))
+        {
+            temp[j++]=tolower(s[i]);
+        }
+    }
+    temp[j] = '\0';
+
+    int n = strlen(temp);
+
+    char *copy=malloc(strlen(temp)+1);
+    strcpy(copy,temp);
+
+    int l =0 , r = n-1 ;
+    while(l<r)
+    {
+        char t = copy[l];
+        copy[l]=copy[r];
+        copy[r] = t;
+        l++;
+        r--;
+    }
+    
+    return  (strcmp(temp,copy))==0;
+    free(temp);
+    free(copy);
+    
+}
+
+#reverseString
+void reverseString(char* s, int sSize) {
+    int l = 0;
+    int r = sSize-1;
+    while(l<r)
+    {
+        int t = s[l];
+        s[l] = s[r];
+        s[r] = t;
+        l++;
+        r--;
+    }
+    
+}
+
+#Longest Common Prefix
+class Solution {
+public:
+    string longestCommonPrefix(vector<string>& strs) {
+
+        string prefix = strs[0];
+
+        for(int i = 1; i < strs.size(); i++) {
+
+            while(strs[i].find(prefix) != 0) {
+                prefix.pop_back();
+
+                if(prefix.empty()) {
+                    return "";
+                }
+            }
+        }
+
+        return prefix;
+    }
+};
